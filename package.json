@@ -1,0 +1,36 @@
+{
+  "name": "khulaharn-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flexone/khulaharn-admin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flexone/khulaharn-admin/issues"
+  },
+  "homepage": "https://github.com/flexone/khulaharn-admin#readme",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.10.7",
+    "axios": "^0.18.0",
+    "babel-plugin-import": "^1.11.0",
+    "biomatic": "^0.3.8",
+    "express": "^4.16.4",
+    "js-cookie": "^2.2.0",
+    "moment": "^2.22.2",
+    "next": "^7.0.2",
+    "next-url-prettifier": "^1.4.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-dropzone": "^7.0.1"
+  }
+}
