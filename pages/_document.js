@@ -11,7 +11,6 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>Kulaharn Admin</title>
-          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         </Head>
         <body>
           <Main />

@@ -533,7 +533,7 @@
       "publicPath": "static/chunks/commons.66d41cb0298582fc891f.js"
     }
   ],
-  "../modules/es6.string.iterator": [
+  "../../modules/es6.string.iterator": [
     {
       "id": 75,
       "name": "./node_modules/core-js/library/modules/es6.string.iterator.js",
@@ -557,7 +557,7 @@
       "publicPath": "static/chunks/commons.66d41cb0298582fc891f.js"
     }
   ],
-  "css-animation/es/Event": [
+  "./Event": [
     {
       "id": 80,
       "name": "./node_modules/css-animation/es/Event.js",
