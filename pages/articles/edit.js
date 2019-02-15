@@ -129,6 +129,12 @@ class EditArticles extends React.Component {
         })
       }
     } else {
+      if ((this.state.images.length + images.length) >= 10) {
+        Modal.error({
+          title: 'สามารถอัพโหลดไฟล์ได้สูงสุด 10 ไฟล์',
+        })
+        return
+      }
       this.setState({
         images: [...this.state.images, ...images],
         galleryType: ''
@@ -229,7 +235,7 @@ class EditArticles extends React.Component {
                     <Input />
                   )}
                 </FormItem>
-                <FormItem
+                {/* <FormItem
                   label="ผู้เขียน"
                   colon={false}
                 >
@@ -272,12 +278,12 @@ class EditArticles extends React.Component {
                   })(
                     <Input />
                   )}
-                </FormItem>
+                </FormItem> */}
               </Form>
               <div className="_pdl-8px">
                 <div className="ant-row ant-form-item ant-form-item-no-colon">
                   <div className="ant-form-item-label">
-                    <label>Status</label>
+                    <label>Public</label>
                   </div>
                   <Switch checked={article.status} onChange={this._changeStatus} />
                 </div>

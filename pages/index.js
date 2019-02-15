@@ -94,7 +94,7 @@ class Article extends React.Component {
       render: (created_at) => <span>{moment(created_at).format('D MMM YY HH:mm')}</span>,
       width: '20%'
     }, {
-      title: 'STATUS',
+      title: 'PUBLIC',
       dataIndex: 'status',
       key: 'status',
       render: (status, record) => <Switch checked={status === 1} onChange={() => {}} />,

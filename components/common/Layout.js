@@ -12,14 +12,17 @@ const SubMenu = Menu.SubMenu
 class MainLayout extends React.Component {
   static getDerivedStateFromProps(props) {
     let pathname = ''
-    if (props.router.pathname === '/' || props.router.pathname === '/articles/add') {
+    if (props.router.pathname === '/' || props.router.pathname === '/articles/add' || props.router.pathname === '/articles/edit') {
       pathname = '/'
     }
-    if (props.router.pathname === '/knowledges' || props.router.pathname === '/knowledges/add') {
+    if (props.router.pathname === '/knowledges' || props.router.pathname === '/knowledges/add' || props.router.pathname === '/knowledges/edit') {
       pathname = '/knowledges'
     }
-    if (props.router.pathname === '/events' || props.router.pathname === '/events/add') {
+    if (props.router.pathname === '/events' || props.router.pathname === '/events/add' || props.router.pathname === '/events/edit') {
       pathname = '/events'
+    }
+    if (props.router.pathname === '/worksheets' || props.router.pathname === '/worksheets/add' || props.router.pathname === '/worksheets/edit') {
+      pathname = '/worksheets'
     }
     if (props.router.pathname === '/gallery') {
       pathname = '/gallery'
@@ -93,6 +96,14 @@ class MainLayout extends React.Component {
               <a>
                 <Icon type="trophy" />
                 <span>กิจกรรม</span>
+              </a>
+            </Link>
+            </Menu.Item>
+            <Menu.Item key="/worksheets">
+            <Link href="/worksheets">
+              <a>
+                <Icon type="file-text" />
+                <span>ใบงาน</span>
               </a>
             </Link>
             </Menu.Item>

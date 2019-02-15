@@ -130,6 +130,12 @@ class EditEvent extends React.Component {
         })
       }
     } else {
+      if ((this.state.images.length + images.length) >= 10) {
+        Modal.error({
+          title: 'สามารถอัพโหลดไฟล์ได้สูงสุด 10 ไฟล์',
+        })
+        return
+      }
       this.setState({
         images: [...this.state.images, ...images],
         galleryType: ''
@@ -229,7 +235,7 @@ class EditEvent extends React.Component {
                     <Input />
                   )}
                 </FormItem>
-                <FormItem
+                {/* <FormItem
                   label="สถานที่"
                   colon={false}
                 >
@@ -250,7 +256,7 @@ class EditEvent extends React.Component {
                   })(
                     <Input />
                   )}
-                </FormItem>
+                </FormItem> */}
                 <FormItem
                   label="Date"
                   colon={false}
@@ -270,7 +276,7 @@ class EditEvent extends React.Component {
               <div className="_pdl-8px">
                 <div className="ant-row ant-form-item ant-form-item-no-colon">
                   <div className="ant-form-item-label">
-                    <label>Status</label>
+                    <label>Public</label>
                   </div>
                   <Switch checked={event.status} onChange={this._changeStatus} />
                 </div>

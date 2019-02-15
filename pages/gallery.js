@@ -1,4 +1,4 @@
-import { Button, Upload, Icon } from 'antd'
+import { Button, Upload, Icon, Modal } from 'antd'
 import Dropzone from 'react-dropzone'
 import Layout from '../components/common/Layout'
 import { FileAPI, MediaAPI } from '../services'
@@ -30,9 +30,19 @@ class News extends React.Component {
       if (!this.state.selectedImage.length) {
         return
       }
-      const ids = this.state.selectedImage.join(',')
-      const res = await MediaAPI.remove({media_ids: ids})
-      this._getMedia()
+      Modal.confirm({
+        title: 'คุณต้องการที่จะลบใช่หรือไม่',
+        okText: 'ตกเลิก',
+        okType: 'danger',
+        cancelText: 'ยกเลิก',
+        onOk: async () => {
+          const ids = this.state.selectedImage.join(',')
+          const res = await MediaAPI.remove({media_ids: ids})
+          this._getMedia()
+        },
+        onCancel() {
+        },
+      });
     } catch (e) {
       console.log(e)
     }
