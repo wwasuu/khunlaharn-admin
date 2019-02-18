@@ -3,15 +3,63 @@ import Link from 'next/link'
 import moment from 'moment'
 import Layout from '../components/common/Layout'
 import ModalRemove from '../components/modal/remove'
+import { QuestionAPI } from '../services'
 
 class WorkSheets extends React.Component {
   state = {
     isLoading: false,
     tmpId: null,
     isShowModalRemove: false,
+    questions: []
   }
 
   componentDidMount() {
+    this._getQuestion()
+  }
+
+  _getQuestion = async () => {
+    try {
+      const res = await QuestionAPI.get()
+      this.setState({
+        questions: res.data.questions
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  
+  _remove = async () => {
+    try {
+      this.setState({
+        isLoading: true
+      })
+      const res = await QuestionAPI.remove(this.state.tmpId)
+      this.setState({
+        questions: [...this.state.questions.filter(x => x.id !== this.state.tmpId)],
+        tmpId: null,
+        isShowModalRemove: false,
+        isLoading: false
+      })
+    } catch (e) {
+      this.setState({
+        isLoading: false
+      })
+      console.log(e)
+    }
+  }
+
+  _openModalRemove = (id) => {
+    this.setState({
+      tmpId: id,
+      isShowModalRemove: true
+    })
+  }
+
+  _closeModalRemove = () => {
+    this.setState({
+      tmpId: null,
+      isShowModalRemove: false
+    })
   }
 
   render () {
@@ -22,16 +70,41 @@ class WorkSheets extends React.Component {
       render: (title_th, record)=>
         <div>
           <div className="_mgbt-8px">{title_th}</div>
-          <div className="_fs-8"><span><Link href={`/events/edit?id=${record.id}`}><a>Edit</a></Link></span><span className="_mgh-8px">|</span><span className="_cs-pt" onClick={() => this._openModalRemove(record.id)}>Delete</span>
+          <div className="_fs-8"><span><Link href={`/worksheets/edit/${record.id}`}><a>Edit</a></Link></span><span className="_mgh-8px">|</span><span className="_cs-pt" onClick={() => this._openModalRemove(record.id)}>Delete</span>
           </div>
         </div>,
-      width: '60%'
+      width: '15%'
+    }, {
+      title: 'QUESTION A',
+      dataIndex: 'choice_a_th',
+      key: 'choice_a_th',
+      width: '15%'
+    }, {
+      title: 'QUESTION B',
+      dataIndex: 'choice_b_th',
+      key: 'choice_b_th',
+      width: '15%'
+    }, {
+      title: 'QUESTION C',
+      dataIndex: 'choice_c_th',
+      key: 'choice_c_th',
+      width: '15%'
+    }, {
+      title: 'QUESTION D',
+      dataIndex: 'choice_d_th',
+      key: 'choice_d_th',
+      width: '15%'
+    }, {
+      title: 'ANSWER',
+      dataIndex: 'answer',
+      key: 'answer',
+      width: '10%'
     }, {
       title: 'DATE',
       dataIndex: 'created_at',
       key: 'created_at',
       render: (created_at) => <span>{moment(created_at).format('D MMM YY HH:mm')}</span>,
-      width: '20%'
+      width: '10%'
     }, {
       title: 'PUBLIC',
       dataIndex: 'status',
@@ -41,7 +114,7 @@ class WorkSheets extends React.Component {
     },
   ]
 
-    const { events, isLoading, isShowModalRemove } = this.state
+    const { questions, isLoading, isShowModalRemove } = this.state
 
     return (
       <Layout>
@@ -54,8 +127,8 @@ class WorkSheets extends React.Component {
               </a>
             </Link>
           </div>
-          <Table rowKey={record => record.id}  dataSource={events} columns={columns} />
-          {/* <ModalRemove isShow={isShowModalRemove} remove={this._remove} closeModalRemove={this._closeModalRemove} isDeleting={isLoading} /> */}
+          <Table rowKey={record => record.id}  dataSource={questions} columns={columns} />
+          <ModalRemove isShow={isShowModalRemove} remove={this._remove} closeModalRemove={this._closeModalRemove} isDeleting={isLoading} />
         </div>
       </Layout>
     )

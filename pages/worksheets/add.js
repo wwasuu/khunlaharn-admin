@@ -2,17 +2,16 @@ import { Button, Form, Input, Switch, Select, Icon, Row, Col } from 'antd'
 import Router from 'next/router'
 import Link from 'next/link'
 import Layout from '../../components/common/Layout'
+import { QuestionAPI } from '../../services'
 
 const FormItem = Form.Item
 const { TextArea } = Input
 
 class AddWorkSheets extends React.Component {
   state = {
-    isShowGallery: false,
     isLoading: false,
     data: {
       status: false,
-      highlight: false
     },
   }
 
@@ -28,20 +27,22 @@ class AddWorkSheets extends React.Component {
         });
         return
       }
-      if (!this.state.featuredImage) {
-        this.setState({
-          isLoading: false,
-          errorFeaturedImage: true,
-        });
-        return
-      } else {
-        this.setState({
-          isLoading: false,
-          errorFeaturedImage: false,
-        });
-      }
-      this._createArticle(data)
+      this._createQuestion(data)
     });
+  }
+
+  _createQuestion = async (data) => {
+    try {
+      const result = await QuestionAPI.create({
+        ...data,
+        status: this.state.data.status ? 1 : 0,
+      })
+      Router.push({
+        pathname: '/worksheets',
+      })
+    } catch (e) {
+      console.log(data)
+    }
   }
 
   _changeStatus = () => {
@@ -52,7 +53,7 @@ class AddWorkSheets extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form
-    const { isLoading , data: { status, highlight }, featuredImage, images } = this.state
+    const { isLoading , data: { status } } = this.state
 
     return (
       <Layout>
@@ -113,14 +114,14 @@ class AddWorkSheets extends React.Component {
                         A).
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_a_th', {
+                        {getFieldDecorator('choice_a_th', {
                             rules: [{ required: true }],
                         })(
                             <Input />
                         )}
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_a_en', {
+                        {getFieldDecorator('choice_a_en', {
                             rules: [{ required: true }],
                         })(
                             <Input />
@@ -135,14 +136,14 @@ class AddWorkSheets extends React.Component {
                         B).
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_b_th', {
+                        {getFieldDecorator('choice_b_th', {
                             rules: [{ required: true }],
                         })(
                             <Input />
                         )}
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_b_en', {
+                        {getFieldDecorator('choice_b_en', {
                             rules: [{ required: true }],
                         })(
                             <Input />
@@ -157,14 +158,14 @@ class AddWorkSheets extends React.Component {
                         C).
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_c_th', {
+                        {getFieldDecorator('choice_c_th', {
                             rules: [{ required: true }],
                         })(
                             <Input />
                         )}
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_c_en', {
+                        {getFieldDecorator('choice_c_en', {
                             rules: [{ required: true }],
                         })(
                             <Input />
@@ -179,14 +180,14 @@ class AddWorkSheets extends React.Component {
                         D).
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_d_th', {
+                        {getFieldDecorator('choice_d_th', {
                             rules: [{ required: true }],
                         })(
                             <Input />
                         )}
                         </Col>
                         <Col span={8}>
-                        {getFieldDecorator('quest_d_en', {
+                        {getFieldDecorator('choice_d_en', {
                             rules: [{ required: true }],
                         })(
                             <Input />
