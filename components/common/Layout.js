@@ -12,7 +12,7 @@ const SubMenu = Menu.SubMenu
 class MainLayout extends React.Component {
   static getDerivedStateFromProps(props) {
     let pathname = ''
-    if (props.router.pathname === '/' || props.router.pathname === '/articles/add' || props.router.pathname === '/articles/edit') {
+    if (props.router.pathname === '/articles' || props.router.pathname === '/articles/add' || props.router.pathname === '/articles/edit') {
       pathname = '/'
     }
     if (props.router.pathname === '/knowledges' || props.router.pathname === '/knowledges/add' || props.router.pathname === '/knowledges/edit') {

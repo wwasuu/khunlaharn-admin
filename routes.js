@@ -6,7 +6,7 @@ const routes = [
         prettyUrl: '/signin',
     },
     {
-        page: 'article',
+        page: 'articles',
         // prettyUrl: '/characteristic',
         prettyUrlPatterns: [
             {
@@ -18,11 +18,11 @@ const routes = [
         ],
     },
     {
-        page: 'article/add',
+        page: 'articles/add',
         prettyUrl: '/article/add',
     },
     {
-        page: 'article/edit',
+        page: 'articles/edit',
         prettyUrl: '/article/edit/:id',
     },
     {
