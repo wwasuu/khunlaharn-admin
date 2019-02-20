@@ -85,6 +85,28 @@ class Knowledge extends React.Component {
     }
   }
 
+  _toggleHighlight = async (id) => {
+    try {
+      const { data: { article } } = await ArticleAPI.getById(id)
+      const updatedArticle = await ArticleAPI.edit({
+        description_en: article.description_en,
+        description_th: article.description_th,
+        featured_image: article.featured_image_id.toString(),
+        highlight: article.highlight === 1 ? 0 : 1,
+        id,
+        media_id: article.media.map(x => x.id).join(','),
+        read_type: article.read_type,
+        title_en: article.title_en,
+        title_th: article.title_th,
+        status: article.status,
+        video_url: article.video_url
+      })
+      this._getKnowledges()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render () {
     const { knowledges, isLoading, isShowModalRemove } = this.state
 
@@ -118,7 +140,7 @@ class Knowledge extends React.Component {
       title: 'HIGHLIGHT',
       dataIndex: 'highlight',
       key: 'highlight',
-      render: highlight => <Switch checked={highlight === 1} onChange={() => {}} />,
+      render: (highlight, record) => <Switch checked={highlight === 1} onChange={() => this._toggleHighlight(record.id)} />,
       width: '10%'
     }]
 

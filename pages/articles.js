@@ -85,10 +85,26 @@ class Article extends React.Component {
     }
   }
 
-  _toggleHighlight = (id) => {
-    this.setState({
-      articles: this.state.articles.map(x => { return x.id === id ? {...x, highlight: !x.highlight }  : x })
-    })
+  _toggleHighlight = async (id) => {
+    try {
+      const { data: { article } } = await ArticleAPI.getById(id)
+      const updatedArticle = await ArticleAPI.edit({
+        description_en: article.description_en,
+        description_th: article.description_th,
+        featured_image: article.featured_image_id.toString(),
+        highlight: article.highlight === 1 ? 0 : 1,
+        id,
+        media_id: article.media.map(x => x.id).join(','),
+        read_type: article.read_type,
+        title_en: article.title_en,
+        title_th: article.title_th,
+        status: article.status,
+        video_url: article.video_url
+      })
+      this._getArticles()
+    } catch (e) {
+      console.log(e)
+    }
   }
 
 
@@ -120,7 +136,7 @@ class Article extends React.Component {
       title: 'HIGHLIGHT',
       dataIndex: 'highlight',
       key: 'highlight',
-      render: (highlight, record) => <Switch checked={highlight === 1} onChange={() => {}} />,
+      render: (highlight, record) => <Switch checked={highlight === 1} onChange={() => this._toggleHighlight(record.id)} />,
       width: '10%'
     }]
 
