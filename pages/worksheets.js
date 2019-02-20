@@ -27,7 +27,7 @@ class WorkSheets extends React.Component {
       console.log(e)
     }
   }
-  
+
   _remove = async () => {
     try {
       this.setState({
@@ -60,6 +60,30 @@ class WorkSheets extends React.Component {
       tmpId: null,
       isShowModalRemove: false
     })
+  }
+
+  _toggleStatus = async (id) => {
+    try {
+      const { data: { question } } = await QuestionAPI.getById(id)
+      const updatedEvent = await QuestionAPI.edit({
+        answer: question.answer,
+        choice_a_en: question.choice_a_en,
+        choice_a_th: question.choice_a_th,
+        choice_b_en: question.choice_b_en,
+        choice_b_th: question.choice_b_th,
+        choice_c_en: question.choice_c_en,
+        choice_c_th: question.choice_c_th,
+        choice_d_en: question.choice_d_en,
+        choice_d_th: question.choice_d_th,
+        id,
+        status: question.status === 1 ? 0 : 1,
+        title_en: question.title_en,
+        title_th: question.title_th,
+      })
+      this._getQuestion()
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render () {
@@ -109,7 +133,7 @@ class WorkSheets extends React.Component {
       title: 'PUBLIC',
       dataIndex: 'status',
       key: 'status',
-      render: status => <Switch checked={status === 1} onChange={() => {}} />,
+      render: (status, record) => <Switch checked={status === 1} onChange={() => this._toggleStatus(record.id)} />,
       width: '10%'
     },
   ]

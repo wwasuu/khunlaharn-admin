@@ -99,7 +99,6 @@ class AddArticles extends React.Component {
   }
 
   _setImages = (images) => {
-    console.log(this.state.images.length + images.length)
     if (this.state.galleryType === 'FEATURED_IMAGE') {
       if (images.length) {
         this.setState({

@@ -41,7 +41,7 @@ class AddWorkSheets extends React.Component {
         pathname: '/worksheets',
       })
     } catch (e) {
-      console.log(data)
+      console.log(e)
     }
   }
 

@@ -19,11 +19,11 @@ const routes = [
     },
     {
         page: 'articles/add',
-        prettyUrl: '/article/add',
+        prettyUrl: '/articles/add',
     },
     {
         page: 'articles/edit',
-        prettyUrl: '/article/edit/:id',
+        prettyUrl: '/articles/edit/:id',
     },
     {
         page: 'events',

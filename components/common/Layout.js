@@ -3,11 +3,20 @@ import { Layout, Menu, Button, Icon } from 'antd'
 import Link from 'next/link'
 import Router, { withRouter } from 'next/router'
 import moment from 'moment'
+import { BounceLoader } from 'react-spinners';
+import { css } from '@emotion/core';
 import 'antd/dist/antd.css'
 import 'biomatic/dist/biomatic.min.css'
 
 const { Header, Content, Footer, Sider } = Layout
 const SubMenu = Menu.SubMenu
+
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 class MainLayout extends React.Component {
   static getDerivedStateFromProps(props) {
@@ -37,7 +46,8 @@ class MainLayout extends React.Component {
     auth: {
       username: null,
       token: null,
-    }
+    },
+    pageLoading: false
   }
 
   componentDidMount() {
@@ -55,7 +65,27 @@ class MainLayout extends React.Component {
     this.setState({
       auth
     })
+
+    const router = Router.router;
+
+    router.events.on('routeChangeStart', () => {
+      this._loadPageStart();
+    });
+    router.events.on('routeChangeComplete', () => {
+      this._loadPageComplete();
+    });
+    router.events.on('routeChangeError', () => {
+      this._loadPageComplete();
+    });
   }
+
+  _loadPageStart = () => {
+    this.setState({ pageLoading: true });
+  };
+
+  _loadPageComplete = () => {
+    this.setState({ pageLoading: false });
+  };
 
   _logout() {
     localStorage.removeItem('auth')
@@ -118,6 +148,17 @@ class MainLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout>
+          {
+            this.state.pageLoading &&
+            <div className="overlay-loading">
+              <BounceLoader
+                sizeUnit={"px"}
+                size={64}
+                color={'#f5b83d'}
+                loading={true}
+              />
+            </div>
+          }
           <Content className="_pd-16px">
             {this.props.children}
           </Content>
@@ -131,6 +172,18 @@ class MainLayout extends React.Component {
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow-y: hidden;
+          }
+          .overlay-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .2);
           }
         `}</style>
         <style jsx global>{`

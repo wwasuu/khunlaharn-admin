@@ -63,6 +63,28 @@ class Knowledge extends React.Component {
     })
   }
 
+  _toggleStatus = async (id) => {
+    try {
+      const { data: { article } } = await ArticleAPI.getById(id)
+      const updatedKnowledge = await ArticleAPI.edit({
+        description_en: article.description_en,
+        description_th: article.description_th,
+        featured_image: article.featured_image_id.toString(),
+        highlight: article.highlight,
+        id,
+        media_id: article.media.map(x => x.id).join(','),
+        read_type: article.read_type,
+        title_en: article.title_en,
+        title_th: article.title_th,
+        status: article.status === 1 ? 0 : 1,
+        video_url: article.video_url
+      })
+      this._getKnowledges()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render () {
     const { knowledges, isLoading, isShowModalRemove } = this.state
 
@@ -90,7 +112,7 @@ class Knowledge extends React.Component {
       title: 'PUBLIC',
       dataIndex: 'status',
       key: 'status',
-      render: status => <Switch checked={status === 1} onChange={() => {}} />,
+      render: (status, record) => <Switch checked={status === 1} onChange={() => this._toggleStatus(record.id)} />,
       width: '10%'
     }, {
       title: 'HIGHLIGHT',

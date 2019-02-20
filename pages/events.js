@@ -61,6 +61,29 @@ class Events extends React.Component {
     })
   }
 
+  _toggleStatus = async (id) => {
+    try {
+      const { data: { event } } = await EventAPI.getById(id)
+      const updatedEvent = await EventAPI.edit({
+        description_en: event.description_en,
+        description_th: event.description_th,
+        featured_image: event.featured_image_id.toString(),
+        highlight: event.highlight,
+        id,
+        media_id: event.media.map(x => x.id).join(','),
+        read_type: event.read_type,
+        title_en: event.title_en,
+        title_th: event.title_th,
+        status: event.status === 1 ? 0 : 1,
+        video_url: event.video_url,
+        date: event.date
+      })
+      this._getEvent()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render () {
     const columns = [{
       title: 'TOPIC',
@@ -83,9 +106,9 @@ class Events extends React.Component {
       title: 'PUBLIC',
       dataIndex: 'status',
       key: 'status',
-      render: status => <Switch checked={status === 1} onChange={() => {}} />,
+      render: (status, record) => <Switch checked={status === 1} onChange={() => this._toggleStatus(record.id)} />,
       width: '10%'
-    }, 
+    },
     // {
     //   title: 'HIGHLIGHT',
     //   dataIndex: 'highlight',

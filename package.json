@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/flexone/khulaharn-admin#readme",
   "dependencies": {
+    "@emotion/core": "^10.0.7",
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.10.7",
     "axios": "^0.18.0",
@@ -31,6 +32,7 @@
     "next-url-prettifier": "^1.4.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-dropzone": "^7.0.1"
+    "react-dropzone": "^7.0.1",
+    "react-spinners": "^0.5.1"
   }
 }
