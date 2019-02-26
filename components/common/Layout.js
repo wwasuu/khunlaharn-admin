@@ -58,7 +58,7 @@ class MainLayout extends React.Component {
       })
       return
     }
-    if (auth.expiredIn <= moment()) {
+    if (moment(auth.expiredIn) <= moment()) {
       this._logout()
       return
     }
@@ -77,6 +77,10 @@ class MainLayout extends React.Component {
     router.events.on('routeChangeError', () => {
       this._loadPageComplete();
     });
+  }
+
+  componentWillUnmount() {
+    
   }
 
   _loadPageStart = () => {
