@@ -110,7 +110,7 @@ class MainLayout extends React.Component {
           </div>
           <Menu selectedKeys={selectedKeys} defaultSelectedKeys={['/']} mode="inline">
             <Menu.Item key="/">
-              <Link href="/">
+              <Link href="/articles" as="/">
                 <a>
                   <Icon type="notification" />
                   <span>ข่าว</span>

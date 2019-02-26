@@ -118,7 +118,7 @@ class Knowledge extends React.Component {
       <div>
         <div className="_mgbt-8px">{title_th}</div>
         <div className="_fs-8">
-          <span><Link href={`/knowledges/edit/${record.id}`}><a>Edit</a></Link></span>
+          <span><Link href={`/knowledges/edit?id=${record.id}`} as={`/knowledges/edit/${record.id}`}><a>Edit</a></Link></span>
           <span className="_mgh-8px">|</span>
           <span className="_cs-pt" onClick={() => this._openModalRemove(record.id)}>Delete</span>
         </div>

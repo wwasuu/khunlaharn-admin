@@ -94,7 +94,7 @@ class WorkSheets extends React.Component {
       render: (title_th, record)=>
         <div>
           <div className="_mgbt-8px">{title_th}</div>
-          <div className="_fs-8"><span><Link href={`/worksheets/edit/${record.id}`}><a>Edit</a></Link></span><span className="_mgh-8px">|</span><span className="_cs-pt" onClick={() => this._openModalRemove(record.id)}>Delete</span>
+          <div className="_fs-8"><span><Link href={`/worksheets/edit?id=${record.id}`} as={`/worksheets/edit/${record.id}`}><a>Edit</a></Link></span><span className="_mgh-8px">|</span><span className="_cs-pt" onClick={() => this._openModalRemove(record.id)}>Delete</span>
           </div>
         </div>,
       width: '15%'

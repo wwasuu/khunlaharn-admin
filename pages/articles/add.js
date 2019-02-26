@@ -145,7 +145,7 @@ class AddArticles extends React.Component {
             <div className="_fs-4">เพิ่มบทความ</div>
             <div>
             <Button loading={isLoading} icon="save" className="_mgr-8px" form="form" key="submit" htmlType="submit">บันทึก</Button>
-            <Link href="/">
+            <Link href="/articles" as="/">
               <a>
                 <Button icon="close">ยกเลิก</Button>
               </a>
