@@ -149,7 +149,7 @@ class Knowledge extends React.Component {
         <div className="_bgcl-white">
           <div className="_dp-f _jtfct-spbtw _pdh-16px _pdv-12px _cl-black _bgcl-gray-300">
             <div className="_fs-4">ความรู้</div>
-            <Link href="/knowledges/add">
+            <Link href="/knowledges/add" as="/knowledges/add">
               <a>
                 <Button icon="plus">เพิ่มความรู้ใหม่</Button>
               </a>

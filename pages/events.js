@@ -125,7 +125,7 @@ class Events extends React.Component {
         <div className="_bgcl-white">
           <div className="_dp-f _jtfct-spbtw _pdh-16px _pdv-12px _cl-black _bgcl-gray-300">
             <div className="_fs-4">กิจกรรม</div>
-            <Link href="/events/add">
+            <Link href="/events/add" as="/events/add">
               <a>
                 <Button icon="plus">เพิ่มกิจกรรมใหม่</Button>
               </a>

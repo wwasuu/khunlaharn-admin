@@ -145,7 +145,7 @@ class WorkSheets extends React.Component {
         <div className="_bgcl-white">
           <div className="_dp-f _jtfct-spbtw _pdh-16px _pdv-12px _cl-black _bgcl-gray-300">
             <div className="_fs-4">ใบงาน</div>
-            <Link href="/worksheets/add">
+            <Link href="/worksheets/add" as="/worksheets/add">
               <a>
                 <Button icon="plus">เพิ่มใบงานใหม่</Button>
               </a>

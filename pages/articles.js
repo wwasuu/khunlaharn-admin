@@ -147,7 +147,7 @@ class Article extends React.Component {
         <div className="_bgcl-white">
           <div className="_dp-f _jtfct-spbtw _pdh-16px _pdv-12px _cl-black _bgcl-gray-300">
             <div className="_fs-4">บทความ</div>
-            <Link href="/articles/add">
+            <Link href="/articles/add" as="/articles/add">
               <a>
                 <Button icon="plus">เพิ่มบทความใหม่</Button>
               </a>

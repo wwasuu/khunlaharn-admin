@@ -118,7 +118,7 @@ class MainLayout extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item key="/knowledges">
-              <Link href="/knowledges">
+              <Link href="/knowledges" as="/knowledges">
                 <a>
                   <Icon type="read" />
                   <span>ความรู้</span>
@@ -126,7 +126,7 @@ class MainLayout extends React.Component {
               </Link>
             </Menu.Item>
             <Menu.Item key="/events">
-            <Link href="/events">
+            <Link href="/events" as="/events">
               <a>
                 <Icon type="trophy" />
                 <span>กิจกรรม</span>
@@ -134,7 +134,7 @@ class MainLayout extends React.Component {
             </Link>
             </Menu.Item>
             <Menu.Item key="/worksheets">
-            <Link href="/worksheets">
+            <Link href="/worksheets" as="/worksheets">
               <a>
                 <Icon type="file-text" />
                 <span>ใบงาน</span>
@@ -142,7 +142,7 @@ class MainLayout extends React.Component {
             </Link>
             </Menu.Item>
             <Menu.Item key="/gallery">
-            <Link href="/gallery">
+            <Link href="/gallery" as="/gallery">
               <a>
                 <Icon type="picture" />
                 <span>คลังรูปภาพ</span>
