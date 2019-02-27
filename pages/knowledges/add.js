@@ -107,7 +107,7 @@ class AddKnowledge extends React.Component {
         })
       }
     } else {
-      if ((this.state.images.length + images.length) >= 10) {
+      if ((this.state.images.length + images.length) > 10) {
         Modal.error({
           title: 'สามารถอัพโหลดไฟล์ได้สูงสุด 10 ไฟล์',
         })

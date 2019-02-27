@@ -57,6 +57,7 @@ class Article extends React.Component {
   }
 
   _closeModalRemove = () => {
+    console.log('closeModalRemove')
     this.setState({
       tmpId: null,
       isShowModalRemove: false

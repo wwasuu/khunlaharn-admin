@@ -8,6 +8,7 @@ class Remove extends React.Component {
 
     return (
       <Modal
+        onCancel={closeModalRemove}
         visible={isShow}
         footer={null}
         width={320}
