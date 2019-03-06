@@ -346,7 +346,7 @@ class EditArticles extends React.Component {
               <span className="_bgcl-gray-200 _mgbt-12px _bdrd-4px _dp-f _fdrt-cl _alit-ct _jtfct-ct">
                 <div className="_h-256px ant-upload ant-upload-drag _ovf-sc" onClick={() => this._openGallery('IMAGE')}>
                   {
-                    images.length ?
+                    images && images.length ?
                     <div className="selected-gallery _pd-24px">
                     {
                       images.map((x, i) => <div key={`${x.id}-${i}`} className="_pst-rlt">
