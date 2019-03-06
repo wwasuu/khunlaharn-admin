@@ -31,7 +31,7 @@ class EditArticles extends React.Component {
           highlight: res.data.article.highlight === 1 ? true : false,
         },
         images: res.data.article.media,
-        featuredImage: res.data.article.featured_image_id ? {
+        featuredImage: (res.data.article.featured_image_id && res.data.article.featured_image) ? {
           media_url: res.data.article.featured_image,
           id: res.data.article.featured_image_id
         } : null
