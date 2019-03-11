@@ -121,6 +121,7 @@ class EditArticles extends React.Component {
   }
 
   _setImages = (images) => {
+    console.log('images', images)
     if (this.state.galleryType === 'FEATURED_IMAGE') {
       if (images.length) {
         this.setState({
