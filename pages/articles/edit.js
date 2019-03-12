@@ -32,7 +32,7 @@ class EditArticles extends React.Component {
           status: res.data.article.status === 1 ? true : false,
           highlight: res.data.article.highlight === 1 ? true : false,
         },
-        images: res.data.article.media,
+        images: res.data.article.media ? res.data.article.media : [],
         featuredImage: (res.data.article.featured_image_id && res.data.article.featured_image) ? {
           media_url: res.data.article.featured_image,
           id: res.data.article.featured_image_id
@@ -121,7 +121,6 @@ class EditArticles extends React.Component {
   }
 
   _setImages = (images) => {
-    console.log('images', images)
     if (this.state.galleryType === 'FEATURED_IMAGE') {
       if (images.length) {
         this.setState({

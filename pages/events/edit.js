@@ -33,7 +33,7 @@ class EditEvent extends React.Component {
           status: res.data.event.status === 1 ? true : false,
           highlight: res.data.event.highlight === 1 ? true : false,
         },
-        images: res.data.event.media,
+        images: res.data.event.media ? res.data.event.media : [],
         featuredImage: (res.data.event.featured_image_id && res.data.event.featured_image) ? {
           media_url: res.data.event.featured_image,
           id: res.data.event.featured_image_id

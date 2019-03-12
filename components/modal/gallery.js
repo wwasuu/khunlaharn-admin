@@ -67,8 +67,7 @@ class Gallery extends React.Component {
     this.props.closeGallery()
   }
 
-  _onAccept = () => {
-    console.log('this.state.selectedImage', this.state.selectedImage)
+  _onAccept = () => {    
     this.props.setImages(this.state.selectedImage)
     this.setState({
       selectedImage: []
