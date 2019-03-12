@@ -70,7 +70,7 @@ class Events extends React.Component {
         featured_image: event.featured_image_id.toString(),
         highlight: event.highlight,
         id,
-        media_id: event.media.map(x => x.id).join(','),
+        media_id: event.media ? event.media.map(x => x.id).join(',') : null,
         read_type: event.read_type,
         title_en: event.title_en,
         title_th: event.title_th,
